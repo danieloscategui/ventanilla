@@ -1,0 +1,406 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://getahead.ltd.uk/dwr/dwr20.dtd">
+<dwr>
+	<allow>
+		<create creator="spring" javascript="UserManager">
+			<param name="class" value="com.pe.pgn.clubpgn.service.UserManager" />
+			<param name="beanName" value="userManager" />
+			<include method="getUsers" />
+		</create>
+
+		<create creator="spring" javascript="MensajeService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.MensajeService" />
+			<param name="beanName" value="mensajeService" />
+			<include method="obtenerListaMensajes" />
+			<include method="buscarMensajes" />
+		</create>
+
+		<create creator="spring" javascript="TarjetaPersonaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.TarjetaPersonaService" />
+			<param name="beanName" value="tarjetaPersonaService" />
+			<include method="buscarTarjetas" />
+			<include method="obtenerRangosTarjetaDisponiblesPorEstacion" />
+		</create>
+
+		<create creator="spring" javascript="AfiliacionService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.AfiliacionService" />
+			<param name="beanName" value="afiliacionService" />
+			<include method="findPronvinciaUbigeo" />
+			<include method="findDistritoUbigeo" />
+			<include method="findTarjetaPersona" />
+		</create>
+
+		<create creator="spring" javascript="ClientePersonaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.ClientePersonaService" />
+			<param name="beanName" value="clientePersonaService" />
+			<include method="obtenerListaClientes" />
+			<include method="busquedaClientesPorFiltros" />
+			<include method="findAllObjects" />
+		</create>
+
+		<create creator="spring" javascript="VentaGeneracionService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.VentaGeneracionService" />
+			<param name="beanName" value="ventaGeneracionService" />
+			<include method="findAllObjects" />
+		</create>
+
+		<create creator="spring" javascript="VentaConsumoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.VentaConsumoService" />
+			<param name="beanName" value="ventaConsumoService" />
+			<include method="findAllObjects" />
+		</create>
+
+		<create creator="spring" javascript="ProgramaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.ProgramaService" />
+			<param name="beanName" value="programaService" />
+			<include method="obtenerListaProgramas" />
+			<include method="buscarProgramas" />
+		</create>
+
+		<create creator="spring" javascript="ReporteLiquidacionService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.ReporteLiquidacionService" />
+			<param name="beanName" value="reporteLiquidacionService" />
+			<include method="periodosPorPrograma" />
+			<include method="findClprPeriodoPrograma" />
+			<include method="listReporteLiquidacionConFiltros" />
+			<include method="generarLiquidacion" />
+			<include method="periodosPorProgramaHistorio" />
+			<include method="periodosPorHistorioLiquidacion" />
+			<include method="verificarExistePeriodoLiq" />
+		</create>
+
+		<create creator="spring" javascript="VentaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.VentaService" />
+			<param name="beanName" value="ventaService" />
+			<include method="busquedaClientes" />
+			<include method="busquedaVentas" />
+			<include method="buscarVentasActivasPorCliente" />
+		</create>
+
+		<create creator="spring" javascript="CategoriaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.CategoriaService" />
+			<param name="beanName" value="categoriaService" />
+			<include method="buscarCategorias" />
+			<include method="obtenerCategoria" />
+		</create>
+
+		<create creator="spring" javascript="PromocionPuntosService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.PromocionPuntosService" />
+			<param name="beanName" value="promocionPuntosService" />
+			<include method="busquedaPromocionesPuntos" />
+			<include method="modificarEstacionPromocion" />
+			<include method="eliminarEstacionPromocion" />
+			<include method="listarRangoPromocion" />
+			<include method="guardarRangos" />
+			<include method="eliminarRangos" />
+		</create>
+
+		<create creator="spring" javascript="EstacionService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.EstacionService" />
+			<param name="beanName" value="estacionService" />
+			<include method="busquedaEstacion" />
+		</create>
+
+		<create creator="spring" javascript="ArticuloService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.ArticuloService" />
+			<param name="beanName" value="articuloService" />
+			<include method="buscarArticulos" />
+		</create>
+
+		<create creator="spring" javascript="AlmacenService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.AlmacenService" />
+			<param name="beanName" value="almacenService" />
+			<include method="buscarAlmacenes" />
+			<include method="obtenerAlmacen" />
+		</create>
+
+		<create creator="spring" javascript="WizardArticuloDao">
+			<param name="class" value="com.pe.pgn.clubpgn.dao.WizardArticuloDao" />
+			<param name="beanName" value="wizardDao" />
+			<include method="buscarArticulos" />
+		</create>
+
+		<create creator="spring" javascript="WizardPremioCatalogoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.WizardPremioCatalogoService" />
+			<param name="beanName" value="wizardPremioCatalogoService" />
+			<include method="buscarPremios" />
+			<include method="recuperarPremio" />
+		</create>
+
+		<create creator="spring" javascript="CatalogoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.CatalogoService" />
+			<param name="beanName" value="catalogoService" />
+			<include method="busquedaCatalogo" />
+			<include method="obtenerPremiosCatalogos"/>
+			<include method="cantidadPremiosCatalogo"/>
+		</create>
+
+		<create creator="spring" javascript="CanjeService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.CanjeService" />
+			<param name="beanName" value="canjeService" />
+			<include method="busquedaCanje" />
+			<include method="obtenerListaSerieCanjePorEstacionTipoDocumento" />
+			<include method="obtenerListaSerieCanjePorAlmacenTipoDocumento" />
+			<include method="obtenerDatosClientePorTarjeta" />
+			<include method="obtenerDatosPremioPorCodigo" />
+			<include method="obtenerPremiosConFiltros" />
+		</create>
+
+		<create creator="spring" javascript="SegmentacionService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.SegmentacionService" />
+			<param name="beanName" value="segmentacionService" />
+			<include method="busquedaSegmentacion" />
+		</create>
+
+		<create creator="spring" javascript="UbigeoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.UbigeoService" />
+			<param name="beanName" value="ubigeoService" />
+			<include method="obtenerDepartamentos" />
+			<include method="obtenerDistritosPorProvincia" />
+			<include method="obtenerProvinciasPorDepartamento" />
+		</create>
+
+		<create creator="spring" javascript="AsignacionArticuloService">
+			<param name="class"
+				value="com.pe.pgn.clubpgn.service.AsignacionArticuloService" />
+			<param name="beanName" value="asignacionArticuloService" />
+			<include method="busquedaDocumentoAsignacionPorFiltros" />
+		</create>
+
+		<create creator="spring" javascript="DocumentoMovArticuloService">
+			<param name="class"
+				value="com.pe.pgn.clubpgn.service.DocumentoMovArticuloService" />
+			<param name="beanName" value="documentoMovArticuloService" />
+			<include method="guardarDocumentoMovimiento" />
+			<include method="eliminarDocumentoMovimiento" />
+			<include method="busquedaDocumentoMovimientoPorFiltros" />
+			<include method="busquedaDocumentoDevolucion" />
+		</create>
+
+		<create creator="spring" javascript="IngresoArticuloService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.IngresoArticuloService" />
+			<param name="beanName" value="ingresoArticuloService" />
+			<include method="busquedaTodosArticulos" />
+			<include method="buscarArticulosConStock" />
+			<include method="obtenerDatosArticuloPorCodigo" />
+			<include method="obtenerDatosAlmacenPorCodigo" />
+		</create>
+
+		<create creator="spring" javascript="WizardArticuloService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.WizardArticuloService" />
+			<param name="beanName" value="wizardArticuloService" />
+			<include method="buscarArticulosDevolucion" />
+			<include method="recuperaArticulo" />
+		</create>
+
+		<create creator="spring" javascript="TransferenciaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.TransferenciaService" />
+			<param name="beanName" value="transferenciaService" />
+			<include method="busquedaListaTransferencias" />
+			<include method="buscarListaArticulosWizard" />
+			<include method="obtenerDatosArticuloPorCodigo" />
+			<include method="obtenerDatosAlmacenPorCodigo" />
+			<include method="obtenerPremiosPorArticulo" />
+			<include method="obtenerPremiosPorArticuloNoInstantVale" />
+		</create>
+
+		<create creator="spring" javascript="DevolucionClienteService">
+			<param name="class"
+				value="com.pe.pgn.clubpgn.service.DevolucionClienteService" />
+			<param name="beanName" value="devolucionClienteService" />
+			<include method="busquedaCanje" />
+		</create>
+
+		<create creator="spring" javascript="IncidenciaPuntosService">
+			<param name="class"
+				value="com.pe.pgn.clubpgn.service.IncidenciaPuntosService" />
+			<param name="beanName" value="incidenciaPuntosService" />
+			<include method="busquedaIncidencia" />
+		</create>
+
+
+		<create creator="spring" javascript="ClienteEmpresaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.ClienteEmpresaService" />
+			<param name="beanName" value="clienteEmpresaService" />
+			<include method="busquedaClientesWizzar" />
+		</create>
+
+		<create creator="spring" javascript="FlotaVehiculoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.FlotaVehiculoService" />
+			<param name="beanName" value="flotaVehiculoService" />
+			<include method="obtenerFlotaVehiculos" />
+			<include method="guardarFlotaVehiculo" />
+			<include method="obtenerFlotaVehiculo" />
+			<include method="eliminarFlotaVehiculo" />
+			<include method="validaVehiculoFlota" />
+		</create>
+
+		<create creator="spring" javascript="SincronizacionFlotaService">
+			<param name="class"
+				value="com.pe.pgn.clubpgn.service.SincronizacionFlotaService" />
+			<param name="beanName" value="sincronizacionFlotaService" />
+			<include method="guardarSyncPorFlotaVehiculo" />
+			<include method="inactivarSyncPorFlotaVehiculo" />
+		</create>
+
+		<create creator="spring" javascript="TarjetaEmpresaService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.TarjetaEmpresaService" />
+			<param name="beanName" value="tarjetaEmpresaService" />
+			<include method="obtenerId" />
+			<include method="esTarjetaValida" />
+		</create>
+
+		<create creator="spring" javascript="TopeService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.TopeService" />
+			<param name="beanName" value="topeService" />
+			<include method="obtenerTope" />
+			<include method="eliminarTope" />
+			<include method="obtenerTopes" />
+			<include method="guardarTopeVista" />
+		</create>
+
+		<create creator="spring" javascript="IncrementalService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.IncrementalService" />
+			<param name="beanName" value="incrementalService" />
+			<include method="eliminarPremio" />
+		</create>
+
+		<create creator="spring" javascript="BonoManualService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.BonoManualService" />
+			<param name="beanName" value="bonoManualService" />
+			<include method="obtenerCantidadBonosPorVenta" />
+			<include method="verificarVentaConsumo" />
+			<include method="verificarVentaGeneracion" />
+		</create>
+
+		<create creator="spring" javascript="TipoBonoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.TipoBonoService" />
+			<param name="beanName" value="tipoBonoService" />
+			<include method="buscarTiposBono" />
+			<include method="obtenerTipoBono" />
+		</create>
+
+		<create creator="spring" javascript="PromocionBonoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.PromocionBonoService" />
+			<param name="beanName" value="promocionBonoService" />
+			<include method="buscarPromocionesBono" />
+			<include method="obtenerPromocionBono" />
+			<include method="validarRegistroRangoFinal" />
+			<include method="eliminarRangos" />
+			<include method="listarRangoPromocion" />
+			<include method="guardarRangos" />
+			<include method="verificarSiEsRangoIntermedio" />
+			<include method="eliminarRangoEnAdelante" />
+			<include method="verificarPromocionEstaVigente" />
+		</create>
+
+		<create creator="spring" javascript="MigrarClienteService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.MigrarClienteService" />
+			<param name="beanName" value="migrarClienteService" />
+			<include method="vista" />
+			<include method="clientesnocompat" />
+			<include method="programasnocompatibles" />
+			<include method="reporteresultados" />
+
+		</create>
+
+		<create creator="spring" javascript="LDAPProvider">
+			<param name="class" value="com.pe.pgn.clubpgn.security.LDAPProvider" />
+			<param name="beanName" value="LDAPProvider" />
+			<include method="getUserLDAP" />
+		</create>
+
+
+		<create creator="spring" javascript="BloqueoService">
+			<param name="class" value="com.pe.pgn.clubpgn.service.BloqueoService" />
+			<param name="beanName" value="bloqueoService" />
+			<include method="obtenerBloqueosVigentes" />
+
+		</create>
+		
+		
+		
+
+		<convert converter="bean" match="com.pe.pgn.clubpgn.model.User" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpmMensaje" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpbClientePersona" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpmUbigeo" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNReporteLiquidacion" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.beans.BNPeriodo" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClprPeriodoPrograma" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNLiquidacion" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbPrograma" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpdUnidadMedida" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbPeriodo" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpmVenta" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpmPromocionPuntos" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNPromocionEstacion" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpmRangoPromocion" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbEstacion" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbTarjetaPersona" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbProducto" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbCategoria" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpmCatalogo" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpbDocumentoMovArticulo" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbAlmacen" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClprPremioCatalogo" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpdTipoTarjetaPersona" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpbEmpresaCelular" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpbTipoDocumentoPersona" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpbEstadoCivil" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClprFlotaVehiculo" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpdTope" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpbTarjetaEmpresa" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpdPremioIncremental" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpbSegmentacion" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpmSerieCanje" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.ClpdTipoBono" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpbPromocionBono" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.ClpdRangoPromocion" />
+
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNMigracion" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNProgramaDetalle" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNDocumentoMovArticulo" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNDocumentoMovArticuloDet" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNClientesPersona" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNArticulo" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNPremioCatalogo" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.beans.BNAlmacen" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.beans.BNCatalogoDetalle" />
+		
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNIncidenciaPuntos" />
+		<convert converter="bean"
+			match="com.pe.pgn.clubpgn.domain.beans.BNClienteEmpresa" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.domain.beans.BNRango" />
+		<convert converter="bean" match="com.pe.pgn.clubpgn.security.LDAPUsuario" />
+
+	</allow>
+</dwr>

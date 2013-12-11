@@ -1,0 +1,54 @@
+-- REPORTE VENTAS DETALLADAS
+
+select
+
+to_date(to_char(venta.da_fecha_venta,:p1_formato_fecha),:p1_formato_fecha) as fecha_venta,
+to_date(to_char(venta.da_fecha_apertura,:p1_formato_fecha),:p1_formato_fecha) as fecha_apertura,
+to_date(to_char(venta.da_fecha_proceso,:p1_formato_fecha),:p1_formato_fecha) as fecha_proceso,
+venta.co_code_isla as isla,
+venta.co_code_cara as cara,
+venta.co_code_manguera as manguera,
+venta.co_serie as serie_ticket,
+venta.co_numero as numero_ticket,
+venta.co_ruc as ruc,
+venta.co_code_vale_credito as vale_credito,
+venta.co_code_vale_promocion as vale_promocion,
+venta.co_codigo_tarjeta_persona as tarjeta_persona,
+venta.co_codigo_tarjeta_empresa as tarjeta_empresa,
+venta.va_lectura_inicio as lectura_inicial,
+venta.va_lectura_final as lectura_final,
+venta.va_lectura_final - venta.va_lectura_inicio as diferencia,
+venta.va_recaudo as recaudo,
+venta.va_precio_unitario as precio_unitario,
+venta.va_cantidad as cantidad_m3,
+
+case when (venta.co_code_vale_promocion    is not null or 
+           venta.co_code_vale_credito      is not null or
+           venta.co_codigo_tarjeta_empresa is not null) then 0.00 else venta.va_precio_venta end  as precio_venta,
+           
+case when (tipobono.va_monto is not null)
+then tipobono.va_monto else 0.00 end as total_bono,
+
+case when (tipobono.va_monto is not null) 
+then
+  
+  case when (venta.co_code_vale_promocion    is not null or 
+             venta.co_code_vale_credito      is not null or
+             venta.co_codigo_tarjeta_empresa is not null) then 0.00 else venta.va_precio_venta - tipobono.va_monto end
+             
+else 
+
+  case when (venta.co_code_vale_promocion    is not null or 
+             venta.co_code_vale_credito      is not null or
+             venta.co_codigo_tarjeta_empresa is not null) then 0.00 else venta.va_precio_venta end
+             
+end as total_efectivo
+
+from clpm_venta venta
+join clpb_estacion estacion on estacion.co_codigo_cofide = venta.co_code_estacion
+left join clpm_bono_cliente_persona bono on bono.co_venta_consumo = venta.id
+left join clpd_tipo_bono tipobono on tipobono.id = bono.co_tipo_bono
+
+where to_date(to_char(venta.da_fecha_apertura,:p1_formato_fecha),:p1_formato_fecha) = to_date(:p1_fecha_apertura,:p1_formato_fecha)
+and estacion.id = :p1_estacion
+order by venta.co_code_isla,venta.co_code_cara,venta.co_code_manguera,venta.va_lectura_inicio asc

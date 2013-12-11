@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="file"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- param name="File" value="/opt/logs/clubpgnweb.log" /> -->
+		<param name="File" value="/Users/josediaz/Downloads/logs/joeweb.log" />
+		<param name="datePattern" value="'_'dd-yyyy-MM'.log'" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%5p %d{ISO8601} [%t][%x] %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application logger -->
+	<logger name="com.pe.pgn.clubpgn">
+		<level value="error" />
+		<appender-ref ref="file" />
+	</logger>
+	
+	<logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<level value="error" />
+		<appender-ref ref="file" />
+	</logger>
+
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.beans">
+		<level value="error" />
+		<appender-ref ref="file" />
+	</logger>
+	
+	<logger name="org.springframework.jdbc">
+		<level value="error" />
+		<appender-ref ref="file" />
+	</logger>
+	
+	<logger name="org.springframework.web">
+		<level value="info" />
+		<appender-ref ref="file" />
+	</logger>	
+		
+	<!-- Root Logger -->
+	<root>
+		<priority value="error" />
+		<appender-ref ref="file" />
+	</root>
+	
+</log4j:configuration>

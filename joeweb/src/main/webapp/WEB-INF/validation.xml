@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+	<global>
+		<constant>
+			<constant-name>phone</constant-name>
+			<constant-value>^[0-9]{2,3}-? ?[0-9]{4,6}$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>intnumber</constant-name>
+			<constant-value>^[0-9]+$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>doublenumber</constant-name>
+			<constant-value>^[0-9]{1,10}(\.[0-9]{0,2})?$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>doublenumber8int2dec</constant-name>
+			<constant-value>^[0-9]{1,8}(\.[0-9]{0,2})?$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>doublenumberposneg</constant-name>
+			<constant-value>^[-+]?[0-9]{1,10}(\.[0-9]{0,2})?$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>zip</constant-name>
+			<constant-value>^\d{5}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>currency</constant-name>
+			<constant-value>^\d{1,3}(,?\d{1,3})*\.?(\d{1,2})?$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>hour</constant-name>
+			<constant-value>([0-1][0-9]|2[0-3]):[0-5][0-9]</constant-value>
+		</constant>
+		<constant>
+			<constant-name>dateFormat</constant-name>
+			<constant-value>^((((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00)))|(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|1\d|2[0-8])02((1[6-9]|[2-9]\d)?\d{2}))|(2902((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00))))$</constant-value>
+		</constant>
+	</global>
+	<formset>
+		<form name="fileUpload">
+			<field property="name" depends="required">
+				<arg0 key="uploadForm.name" />
+			</field>
+			<!-- Client-side Javascript won't catch this in IE, but server-side will -->
+			<field property="file" depends="required">
+				<arg0 key="uploadForm.file" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<!-- Define form validation config in validation-forms.xml -->
+		<form name="user">
+			<field property="username" depends="required">
+
+				<arg0 key="user.username" />
+			</field>
+
+			<field property="firstName" depends="required">
+
+				<arg0 key="user.firstName" />
+			</field>
+			<field property="lastName" depends="required">
+
+				<arg0 key="user.lastName" />
+			</field>
+			<field property="email" depends="required,email">
+
+				<arg0 key="user.email" />
+			</field>
+			<field property="phoneNumber" depends="mask">
+				<msg name="mask" key="errors.phone" />
+
+				<arg0 key="user.phoneNumber" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${phone}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="mensaje">
+			<field property="deMensaje" depends="required">
+				<arg0 key="label.mensaje" />
+			</field>
+			<field property="desFechaInicioLiq" depends="required">
+				<arg0 key="label.iniciovigencia" />
+			</field>
+			<field property="desFechaFinLiq" depends="required">
+				<arg0 key="label.finvigencia" />
+			</field>
+		</form>
+
+
+		<form name="afiliacion">
+			<field property="deNombre" depends="required">
+				<arg0 key="afiliacionform.nombre" />
+			</field>
+			<field property="deApePaterno" depends="required">
+				<arg0 key="label.apepaterno" />
+			</field>
+			<field property="deApeMaterno" depends="required">
+				<arg0 key="label.apematerno" />
+			</field>
+			<field property="coCodeNumeroDocumento" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+
+				<arg0 key="label.numdocumento" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<!-- <field property="jrDireccion" depends="required"> <arg0 key="label.jr"/> 
+				</field> <field property="nombreDireccion" depends="required"> <arg0 key="label.nombrejr"/> 
+				</field> <field property="numeroDireccion" depends="required"> <arg0 key="label.numero"/> 
+				</field> <field property="mzDireccion" depends="required"> <arg0 key="label.mz"/> 
+				</field> <field property="dptoDireccion" depends="required"> <arg0 key="label.dpto"/> 
+				</field> <field property="nombreUrbDireccion" depends="required"> <arg0 key="label.nombreurb"/> 
+				</field> <field property="secDireccion" depends="required"> <arg0 key="label.sec"/> 
+				</field> -->
+			<field property="coTelefonoFijo" depends="mask">
+				<msg name="mask" key="errors.integer" />
+
+				<arg0 key="label.telefonofijo" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="coCelular" depends="mask">
+				<msg name="mask" key="errors.integer" />
+
+				<arg0 key="label.celular" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="deMail" depends="email">
+				<arg0 key="label.email" />
+			</field>
+			<field property="coTarjetaPersona_text" depends="mask">
+				<msg name="mask" key="errors.integer" />
+
+				<arg0 key="label.tarjetapersona" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="daFechaNacimiento" depends="required">
+				<arg0 key="label.fechanacimiento" />
+			</field>
+			<field property="coTipoDocumentoPersona" depends="required">
+				<arg0 key="label.tipodocumento" />
+			</field>
+
+		</form>
+	</formset>
+
+
+	<formset>
+		<form name="clientePersona">
+			<field property="coCodeNumeroDocumento" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="cliente.persona.codigo.documento" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+
+			<field property="deNombre" depends="required">
+				<arg0 key="cliente.persona.nombre" />
+			</field>
+			<field property="deApePaterno" depends="required">
+				<arg0 key="cliente.persona.apellido.paterno" />
+			</field>
+			<field property="deApeMaterno" depends="required">
+				<arg0 key="cliente.persona.apellido.materno" />
+			</field>
+			<field property="fechaNacimiento" depends="required">
+				<arg0 key="cliente.persona.fecha.nacimiento" />
+			</field>
+			<field property="coCelular" depends="integer">
+				<arg0 key="cliente.persona.celular" />
+			</field>
+			<field property="coTelefonoFijo" depends="integer">
+				<arg0 key="cliente.persona.telefono.fijo" />
+			</field>
+			<field property="deMail" depends="email">
+				<arg0 key="cliente.persona.mail" />
+			</field>
+
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tarjetaPersona">
+			<field property="numeroInicio" depends="required,integer">
+				<arg0 key="common.inicio" />
+			</field>
+			<field property="numeroFin" depends="required,integer">
+				<arg0 key="common.fin" />
+			</field>
+			<field property="daFechaInicioVigencia" depends="required">
+				<arg0 key="common.vigencia.inicio" />
+			</field>
+			<field property="daFechaFinVigencia" depends="required">
+				<arg0 key="common.vigencia.fin" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="reasignacionTarjetaPersona">
+			<field property="numeroInicio" depends="required,integer">
+				<arg0 key="common.inicio" />
+			</field>
+			<field property="numeroFin" depends="required,integer">
+				<arg0 key="common.fin" />
+			</field>
+			<field property="coEstacion" depends="required">
+				<arg0 key="common.estacion" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tarjetaPersonaEdit">
+
+			<field property="coCodigoTarjetaPersona" depends="required">
+				<arg0 key="common.codigo.tarjeta" />
+			</field>
+			<field property="desFechaInicio" depends="required">
+				<arg0 key="common.vigencia.inicio" />
+			</field>
+			<field property="desFechaFin" depends="required">
+				<arg0 key="common.vigencia.fin" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tarjetaPersonaUpdate">
+			<field property="numeroInicio" depends="required,integer">
+				<arg0 key="common.inicio" />
+			</field>
+			<field property="numeroFin" depends="required,integer">
+				<arg0 key="common.fin" />
+			</field>
+			<field property="coEstacion" depends="required">
+				<arg0 key="common.estacion" />
+			</field>
+			<field property="daFechaInicioVigencia" depends="required">
+				<arg0 key="common.vigencia.inicio" />
+			</field>
+			<field property="daFechaFinVigencia" depends="required">
+				<arg0 key="common.vigencia.fin" />
+			</field>
+		</form>
+	</formset>
+	<formset>
+		<form name="programa">
+			<field property="coUnidadMedida" depends="required">
+				<arg0 key="programaform.unidadmedida" />
+			</field>
+			<field property="dePrograma" depends="required">
+				<arg0 key="programaform.descripcion" />
+			</field>
+			<field property="daFechaInicioVigencia" depends="required">
+				<arg0 key="label.iniciovigencia" />
+			</field>
+			<field property="daFechaFinVigencia" depends="required">
+				<arg0 key="label.finvigencia" />
+			</field>
+			<field property="nuAviso1" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+
+				<arg0 key="programaform.nu.aviso1" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="nuAviso2" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+
+				<arg0 key="programaform.nu.aviso2" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+	<formset>
+		<form name="meta">
+			<field property="deMeta" depends="required">
+				<arg0 key="metaform.descripcion" />
+			</field>
+			<field property="vaCosto" depends="required,float">
+				<arg0 key="metaform.valorcosto" />
+			</field>
+			<field property="vaMeta" depends="required,float">
+				<arg0 key="metaform.valormeta" />
+			</field>
+		</form>
+	</formset>
+	<formset>
+		<form name="periodoprograma">
+			<field property="clpbPeriodo" depends="required">
+				<arg0 key="periodoprogramaform.periodo" />
+			</field>
+			<field property="daFechaInicioLiq" depends="required">
+				<arg0 key="periodoprogramaform.inicioliq" />
+			</field>
+			<field property="daFechaFinLiq" depends="required">
+				<arg0 key="periodoprogramaform.finliq" />
+			</field>
+			<field property="deMail" depends="required,email">
+				<arg0 key="periodoprogramaform.email" />
+			</field>
+		</form>
+	</formset>
+	<formset>
+		<form name="unidadMedida">
+			<field property="deUnidadMedida" depends="required">
+				<arg0 key="common.unidad.medida" />
+			</field>
+			<field property="deSimbolo" depends="required">
+				<arg0 key="common.simbolo" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="ventaForm">
+			<field property="coCodeManguera" depends="required,integer">
+				<arg0 key="venta.manual.codigo.manguera" />
+			</field>
+			<field property="coCodeCara" depends="required,integer">
+				<arg0 key="venta.manual.codigo.cara" />
+			</field>
+			<field property="coCodeSurtidor" depends="required,integer">
+				<arg0 key="venta.manual.codigo.surtidor" />
+			</field>
+			<field property="coCodeIsla" depends="required,integer">
+				<arg0 key="venta.manual.codigo.isla" />
+			</field>
+			<field property="coCodeEstacion" depends="required,integer">
+				<arg0 key="venta.manual.estacion" />
+			</field>
+			<field property="coSerie" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="venta.manual.numero.serie" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="coNumero" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="venta.manual.numero" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="coCodeSerialImpresora" depends="required">
+				<arg0 key="venta.manual.codigo.impresora" />
+			</field>
+			<field property="coCodeTurnoHorario" depends="required,integer">
+				<arg0 key="venta.manual.turno" />
+			</field>
+			<field property="fechaVenta" depends="required">
+				<arg0 key="venta.manual.fecha.venta" />
+			</field>
+			<field property="fechaProceso" depends="required">
+				<arg0 key="venta.manual.fecha.proceso" />
+			</field>
+			<field property="fechaLecturaInicio" depends="required">
+				<arg0 key="venta.manual.fecha.lectura.inicio" />
+			</field>
+			<field property="fechaLecturaFin" depends="required">
+				<arg0 key="venta.manual.fecha.lectura.fin" />
+			</field>
+			<field property="vaLecturaInicio" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="venta.manual.lectura.inicio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="vaLecturaFinal" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="venta.manual.lectura.fin" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="vaCantidad" depends="required">
+				<arg0 key="venta.manual.cantidad" />
+			</field>
+			<field property="vaPrecioUnitario" depends="required">
+				<arg0 key="venta.manual.precio.unitario" />
+
+			</field>
+
+
+			<field property="vaValorVenta" depends="required">
+				<arg0 key="venta.manual.valor.venta" />
+			</field>
+			<field property="vaPrecioVenta" depends="required">
+				<arg0 key="venta.manual.precio.venta" />
+			</field>
+			<field property="dePlaca" depends="required">
+				<arg0 key="venta.manual.placa" />
+			</field>
+			<field property="coRecibo" depends="mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="venta.manual.recibo" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="deObservaciones" depends="required">
+				<arg0 key="venta.manual.observaciones" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="promocionPuntos">
+			<field property="dePromocionPuntos" depends="required">
+				<arg0 key="promocion.puntos.descripcion" />
+			</field>
+			<field property="fechaInicio" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.fecha.inicio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+			<field property="fechaFin" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.fecha.fin" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+			<field property="daHoraInicio" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.hora.inicio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${hour}</var-value>
+				</var>
+			</field>
+			<field property="daHoraFin" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.hora.fin" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${hour}</var-value>
+				</var>
+			</field>
+			<field property="vaFactor" depends="integer">
+				<arg0 key="promocion.puntos.factor" />
+			</field>
+			<field property="vaCantidadConsumida" depends="integer">
+				<arg0 key="promocion.puntos.cantidad" />
+			</field>
+			<field property="vaSumando" depends="integer">
+				<arg0 key="promocion.puntos.sumando" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="estacion">
+			<field property="deEstacion" depends="required">
+				<arg0 key="estacionForm.descripcion" />
+			</field>
+			<field property="deDireccion" depends="required">
+				<arg0 key="estacionForm.direccion" />
+			</field>
+			<field property="coCodigoCofide" depends="required,integer">
+				<arg0 key="estacionForm.coCodigoCofide" />
+			</field>
+
+		</form>
+	</formset>
+
+	<formset>
+		<form name="producto">
+			<field property="deProducto" depends="required">
+				<arg0 key="productoForm.deProducto" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="categoria">
+			<field property="deCategoria" depends="required">
+				<arg0 key="common.categoria" />
+			</field>
+			<field property="coCodigoCategoria" depends="required,minlength">
+				<arg0 key="common.codigo" />
+				<arg1 name="minlength" key="${var:minlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>3</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="articulo">
+			<field property="deArticulo" depends="required">
+				<arg0 key="common.articulo" />
+			</field>
+			<field property="clpbCategoria.id" depends="required">
+				<arg0 key="common.categoria" />
+			</field>
+			<field property="deProveedor" depends="required">
+				<arg0 key="common.proveedor" />
+			</field>
+			<field property="vaPrecioReferencial" depends="required,float">
+				<arg0 key="common.precio.referencial" />
+			</field>
+			<field property="cantidad" depends="mask">
+				<arg0 key="common.cantidad" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber8int2dec}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="almacen">
+			<field property="deAlmacen" depends="required">
+				<arg0 key="common.almacen" />
+			</field>
+			<field property="coCodigoAlmacen" depends="required">
+				<arg0 key="common.codigo.almacen" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="catalogo">
+			<field property="deCatalogo" depends="required">
+				<arg0 key="common.catalogo" />
+			</field>
+			<field property="coCodigoCatalogo" depends="required,minlength">
+				<arg0 key="catalogoForm.coCodigoCatalogo" />
+				<arg1 name="minlength" key="${var:minlength}" resource="false" />
+				<var>
+					<var-name>minlength</var-name>
+					<var-value>6</var-value>
+				</var>
+			</field>
+			<field property="inicioVigencia" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="label.iniciovigencia" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+			
+			<field property="finCanje" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="catalogoForm.finCanje" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="asignacionarticulo">
+			<field property="deDocumento" depends="required">
+				<arg0 key="common.documento" />
+			</field>
+			<!-- <field property="deObservaciones" depends="required"> <arg0 key="common.observaciones"/> 
+				</field> -->
+		</form>
+	</formset>
+
+	<formset>
+		<form name="devolucionproveedor">
+			<field property="daFechaDocumento" depends="required">
+				<arg0 key="devolucionproveedorForm.fechaDoc" />
+			</field>
+
+			<field property="deProveedor" depends="required">
+				<arg0 key="devolucionproveedorForm.proveedor" />
+			</field>
+
+			<field property="deDocumento" depends="required">
+				<arg0 key="devolucionproveedorForm.documento" />
+			</field>
+
+		</form>
+	</formset>
+
+
+	<formset>
+		<form name="canjeform">
+			<field property="codTarjeta" depends="required">
+				<arg0 key="common.codigo.tarjeta" />
+			</field>
+			<field property="nuSerie" depends="required">
+				<arg0 key="canjeList.nuserie" />
+			</field>
+			<field property="coAlmacen" depends="required">
+				<arg0 key="common.almacen" />
+			</field>
+
+			<field property="coCodigoPremio" depends="required">
+				<arg0 key="common.codigo.premio" />
+			</field>
+			<field property="vaCantidad" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="common.cantidad" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="vaPuntosPremio" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="common.ptos.premio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			<field property="vaPrecioPremio" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber" />
+				<arg0 key="common.precio.premio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${currency}</var-value>
+				</var>
+			</field>
+
+		</form>
+	</formset>
+
+	<formset>
+		<form name="devolucionclienteform">
+
+			<field property="vaCantidad" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="common.cantidad" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+
+	<formset>
+		<form name="ingresoarticuloform">
+			<field property="deProveedor" depends="required">
+				<arg0 key="common.proveedor" />
+			</field>
+			<field property="deDocumento" depends="required">
+				<arg0 key="common.documento" />
+			</field>
+			<field property="coAlmacen" depends="required">
+				<arg0 key="common.almacen" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="transferenciaform">
+			<field property="deDocumento" depends="required">
+				<arg0 key="common.documento" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="role">
+			<field property="name" depends="required">
+				<arg0 key="roleform.role" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="penalizacionbonificacionform">
+
+			<field property="coClientePersona" depends="required">
+				<arg0 key="penalizacionbonificacionform.cliente" />
+			</field>
+
+			<field property="daFechaIncidencia" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="penalizacionbonificacionform.fechaincidencia" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+
+			<field property="vaPuntos" depends="required">
+				<arg0 key="penalizacionbonificacionform.puntos" />
+			</field>
+
+			<field property="deSustentacion" depends="required">
+				<arg0 key="penalizacionbonificacionform.sustentacion" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tipoVehiculo">
+			<field property="deTipoVehiculo" depends="required">
+				<arg0 key="common.tipo.vehiculo" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tipoBono">
+			<field property="deTipoBono" depends="required">
+				<arg0 key="tipobonolist.tipobono" />
+			</field>
+
+			<field property="vaMonto" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber8int2dec" />
+				<arg0 key="tipobonolist.monto" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber8int2dec}</var-value>
+				</var>
+			</field>
+
+			<field property="nuDiasVencimiento" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="tipobonolist.diasvencimiento" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+
+	<formset>
+		<form name="tipoBono">
+			<field property="deTipoBono" depends="required">
+				<arg0 key="tipobonolist.tipobono" />
+			</field>
+
+			<field property="vaMonto" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber8int2dec" />
+				<arg0 key="tipobonolist.monto" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber8int2dec}</var-value>
+				</var>
+			</field>
+
+			<field property="nuDiasVencimiento" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="tipobonolist.diasvencimiento" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+
+
+	<formset>
+		<form name="variableGlobales">
+
+			<field property="vaTiempomaximoventa" depends="mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="variableglobalform.tiempomaximoventa" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+
+			<field property="vaCanjesmaximosventa" depends="mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="variableglobalform.canjemaximoventa" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+
+			<field property="vaConsumominimoventa" depends="mask">
+				<msg name="mask" key="errors.doublenumber8int2dec" />
+				<arg0 key="variableglobalform.consumominimoventa" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber8int2dec}</var-value>
+				</var>
+			</field>
+
+
+			<field property="vaDiasvencimiento" depends="mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="variableglobalform.diasparavencimiento" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+			
+			<field property="vatiempoesperasolcanjeporregularizar" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="variableglobalform.tiempoesperaregularizacion" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+
+		</form>
+	</formset>
+
+
+
+
+	<formset>
+		<form name="promocionBono">
+			<field property="deNombre" depends="required">
+				<arg0 key="promocionbonolist.promobono" />
+			</field>
+
+			<field property="coTipoBono" depends="required">
+				<arg0 key="promocionbonolist.tipobono" />
+			</field>
+
+			<field property="vaMontoMinimo" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber8int2dec" />
+				<arg0 key="promocionbonolist.montomin" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber8int2dec}</var-value>
+				</var>
+			</field>
+
+			<field property="inicioVigencia" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocionbonolist.inivigencia" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+
+			<field property="finVigencia" depends="required,mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocionbonolist.finvigencia" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+
+	<formset>
+		<form name="bonoClientePersona">
+			<field property="deClientePersona" depends="required">
+				<arg0 key="common.cliente.persona" />
+			</field>
+
+			<field property="coPromocionBono" depends="required">
+				<arg0 key="promocionbonolist.promobono" />
+			</field>
+
+			<field property="vaCantidad" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="common.cantidad" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="rangoPromocionBono">
+
+			<field property="vaConsumoInicio" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber8int2dec" />
+				<arg0 key="rangoPromocionBonoForm.consumoini.desde" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber8int2dec}</var-value>
+				</var>
+			</field>
+
+			<field property="vaCantidad" depends="required,mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="rangoPromocionBonoForm.cantbonos" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+
+		</form>
+	</formset>
+
+	<formset>
+		<form name="vehiculo">
+			<field property="dePlaca" depends="required">
+				<arg0 key="common.placa" />
+			</field>
+			<field property="deModelo" depends="required">
+				<arg0 key="common.modelo" />
+			</field>
+			<field property="coTipoVehiculo" depends="required">
+				<arg0 key="common.tipo.vehiculo" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tipoTarjetaPersona">
+			<field property="deTipoTarjetaPersona" depends="required">
+				<arg0 key="common.tipo.tarjeta" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="clienteempresa">
+			<field property="deClienteEmpresa" depends="required">
+				<arg0 key="clienteempresaform.razonsocial" />
+			</field>
+			<field property="coRuc" depends="required">
+				<arg0 key="clienteempresaform.ruc" />
+			</field>
+			<field property="deAlias" depends="required">
+				<arg0 key="clienteempresaform.alias" />
+			</field>
+			<field property="lineaCredito.coTipoLineaCredito" depends="required">
+				<arg0 key="clienteempresaform.tipo.linea" />
+			</field>
+
+
+			<field property="lineaCredito.vaLineaCredito" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber" />
+				<arg0 key="clienteempresaform.valor.linea" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber}</var-value>
+				</var>
+			</field>
+
+			<field property="lineaCredito.fechaInicioContrato" depends="required">
+				<arg0 key="clienteempresaform.fecha.inicio.contrato" />
+			</field>
+			<field property="lineaCredito.fechaFinContrato" depends="required">
+				<arg0 key="clienteempresaform.fecha.fin.contrato" />
+			</field>
+
+			<field property="deEmailNotificacion1" depends="required,email">
+				<arg0 key="clienteempresaform.correo.aviso1" />
+			</field>
+		</form>
+	</formset>
+
+
+	<formset>
+		<form name="flota">
+			<field property="deSufijo" depends="required">
+				<arg0 key="common.flota" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tarjetaEmpresa">
+			<field property="numeroInicio" depends="required,long">
+				<arg0 key="common.inicio" />
+			</field>
+			<field property="numeroFin" depends="required,long">
+				<arg0 key="common.fin" />
+			</field>
+			<field property="daVigenciaInicio" depends="required">
+				<arg0 key="common.vigencia.inicio" />
+			</field>
+			<field property="daVigenciaFin" depends="required">
+				<arg0 key="common.vigencia.fin" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="tarjetaEmpresaIndividual">
+			<field property="deObservaciones" depends="required">
+				<arg0 key="common.observaciones" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="clientebusqueda">
+			<field property="lineaCreditoMinima" depends="required,integer">
+				<arg0 key="cliente.empresa.linea.minima" />
+			</field>
+			<field property="lineaCreditoMinima" depends="required,integer">
+				<arg0 key="cliente.empresa.linea.maxima" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="documentoPago">
+			<field property="clpbClienteEmpresa.deClienteEmpresa" depends="required">
+				<arg0 key="documentopagoform.cliente" />
+			</field>
+			<field property="coFactura" depends="required">
+				<arg0 key="documentopagoform.factura" />
+			</field>
+			<field property="fechaEmisionFactura" depends="required">
+				<arg0 key="documentopagoform.fecha.emision" />
+			</field>
+			<field property="fechaPagoFactura" depends="required">
+				<arg0 key="documentopagoform.fecha.pago" />
+			</field>
+
+		</form>
+	</formset>
+	<formset>
+		<form name="incremental">
+			<field property="deIncremental" depends="required">
+				<arg0 key="common.incremental" />
+			</field>
+			<field property="clpbPrograma.id" depends="required">
+				<arg0 key="common.programa" />
+			</field>
+			<field property="vaInclusionMinimo" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber" />
+				<arg0 key="common.criterio.inclusion.minimo" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber}</var-value>
+				</var>
+			</field>
+			<field property="vaInclusionMaximo" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber" />
+				<arg0 key="common.criterio.inclusion.maximo" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber}</var-value>
+				</var>
+			</field>
+			<field property="vaExclusionVariacion" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber" />
+				<arg0 key="common.criterio.exclusion" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber}</var-value>
+				</var>
+			</field>
+			<field property="vaNumeroRecordatorios" depends="required,integer">
+				<arg0 key="common.numero.recordatorios" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="premioIncremental">
+			<field property="dePremioIncremental" depends="required">
+				<arg0 key="common.premio" />
+			</field>
+			<field property="vaCantidadMinimaRequerida" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber" />
+				<arg0 key="common.cantidad.minima" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber}</var-value>
+				</var>
+			</field>
+			<field property="vaCantidadPremio" depends="required,mask">
+				<msg name="mask" key="errors.doublenumber" />
+				<arg0 key="common.cantidad.premio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${doublenumber}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="promocionConsumo">
+			<field property="dePromocionConsumo" depends="required">
+				<arg0 key="common.promocion.consumo" />
+			</field>
+			<field property="coNumeroValeInicial" depends="required,integer">
+				<arg0 key="common.vale.inicio" />
+			</field>
+			<field property="coNumeroValeFinal" depends="required,integer">
+				<arg0 key="common.vale.fin" />
+			</field>
+		</form>
+	</formset>
+
+
+	<formset>
+		<form name="migrarCliente">
+
+
+			<field property="coProgramaOrigen" depends="required">
+				<arg0 key="migrarCliente.programaorigen_id" />
+			</field>
+			<field property="coProgramaDestino" depends="required">
+				<arg0 key="migrarCliente.programadestino_id" />
+			</field>
+			<field property="fechaini" depends="mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="migrarCliente.fechaafiliacion_inicio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+			<field property="fechafin" depends="mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="migrarCliente.fechaafiliacion_fin" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+
+			<field property="edad1" depends="mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="migrarCliente.edad" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+
+
+			<field property="edad" depends="mask">
+				<msg name="mask" key="errors.integer" />
+				<arg0 key="migrarCliente.edad" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${intnumber}</var-value>
+				</var>
+			</field>
+
+
+		</form>
+	</formset>
+
+	<formset>
+		<form name="segmentacionform">
+			<field property="parametro" depends="required">
+				<arg0 key="segmentacionform.identificador" />
+			</field>
+			<field property="condicion1" depends="required">
+				<arg0 key="segmentacionform.condicion.ini" />
+			</field>
+			<field property="condicion2" depends="required">
+				<arg0 key="segmentacionform.condicion.fin" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<form name="reportereservaform">
+			<field property="fechaInicio" depends="mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.fecha.inicio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+			<field property="fechaFin" depends="mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.fecha.fin" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${dateFormat}</var-value>
+				</var>
+			</field>
+			<field property="daHoraInicio" depends="mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.hora.inicio" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${hour}</var-value>
+				</var>
+			</field>
+			<field property="daHoraFin" depends="mask">
+				<msg name="mask" key="errors.hour" />
+				<arg0 key="promocion.puntos.hora.fin" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${hour}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+
+    <formset>
+        <form name="empresaafiliadora">
+            <field property="deEmpresaAfiliadora" depends="required">
+                <arg0 key="common.empresa.afiliadora"/>
+            </field>
+            <field property="coPrograma" depends="required">
+                <arg0 key="common.programas"/>
+            </field>            
+        </form>
+    </formset>   
+    
+    <formset>
+        <form name="bloqueo">
+            <field property="observacion" depends="required">
+                <arg0 key="bloqueoform.observacion"/>
+            </field>
+        
+        </form>
+    </formset>   
+    
+    <formset>
+        <form name="sobregiro">
+            <field property="observacion" depends="required">
+                <arg0 key="sobregiroform.observacion"/>
+            </field>
+        
+        </form>
+    </formset>       
+    
+</form-validation>
+

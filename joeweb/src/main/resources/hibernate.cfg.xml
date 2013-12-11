@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="com.pe.pgn.clubpgn.model.User"/>
+        <mapping class="com.pe.pgn.clubpgn.model.Role"/>
+        <mapping class="com.pe.pgn.clubpgn.model.OpcionMenu"/>
+        <mapping class="com.pe.pgn.clubpgn.domain.ClpbEmpresaAfiliadora"/>
+        <mapping class="com.pe.pgn.clubpgn.domain.ClpbEstacion"/>
+        <mapping class="com.pe.pgn.clubpgn.domain.ClpbPrograma"/>
+        <mapping class="com.pe.pgn.clubpgn.domain.ClpmUbigeo"/>
+        <mapping class="com.pe.pgn.clubpgn.domain.ClpdUnidadMedida"/>
+
+    </session-factory>
+</hibernate-configuration>
