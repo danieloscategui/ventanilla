@@ -44,7 +44,7 @@ public interface UserManager extends GenericManager<User, Long> {
      * Retrieves a list of all users.
      * @return List
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	List getUsers();
 
     /**

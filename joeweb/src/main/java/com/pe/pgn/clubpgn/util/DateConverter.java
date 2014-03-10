@@ -25,7 +25,8 @@ public class DateConverter implements Converter {
      * @param value value to convert
      * @return Converted value for property population
      */
-    public Object convert(Class type, Object value) {
+    @SuppressWarnings("rawtypes")
+	public Object convert(Class type, Object value) {
         if (value == null) {
             return null;
         } else if (type == Timestamp.class) {
@@ -47,7 +48,8 @@ public class DateConverter implements Converter {
      * @param pattern date pattern to parse with
      * @return Converted value for property population
      */
-    protected Object convertToDate(Class type, Object value, String pattern) {
+    @SuppressWarnings("rawtypes")
+	protected Object convertToDate(Class type, Object value, String pattern) {
         DateFormat df = new SimpleDateFormat(pattern);
         if (value instanceof String) {
             try {
@@ -76,7 +78,8 @@ public class DateConverter implements Converter {
      * @param value value to convert
      * @return Converted value for property population
      */
-    protected Object convertToString(Class type, Object value) {
+    @SuppressWarnings("rawtypes")
+	protected Object convertToString(Class type, Object value) {
 
         if (value instanceof Date) {
             DateFormat df = new SimpleDateFormat(DateUtil.getDatePattern());

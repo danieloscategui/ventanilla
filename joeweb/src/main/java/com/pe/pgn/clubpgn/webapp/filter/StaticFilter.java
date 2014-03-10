@@ -52,7 +52,8 @@ public class StaticFilter extends OncePerRequestFilter {
         servletName = getFilterConfig().getInitParameter(SERVLETNAME_PARAMETER);
     }
 
-    private String[] parsePatterns(String delimitedPatterns) {
+    @SuppressWarnings("rawtypes")
+	private String[] parsePatterns(String delimitedPatterns) {
         //make sure no patterns are repeated.
         Set patternSet = org.springframework.util.StringUtils.commaDelimitedListToSet(delimitedPatterns);
         String[] patterns = new String[patternSet.size()];

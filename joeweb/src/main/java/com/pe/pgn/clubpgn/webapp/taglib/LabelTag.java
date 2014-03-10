@@ -44,7 +44,8 @@ public class LabelTag extends TagSupport {
     protected String errorClass = null;
     protected boolean colon = false;
 
-    public int doStartTag() throws JspException {
+    @SuppressWarnings("rawtypes")
+	public int doStartTag() throws JspException {
         
         try {
             this.requestContext =   

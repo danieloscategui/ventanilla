@@ -829,7 +829,7 @@
         <hibernate.dialect>org.hibernate.dialect.Oracle9iDialect</hibernate.dialect>
 		<jdbc.groupId>com.oracle</jdbc.groupId>
         <jdbc.artifactId>ojdbc6</jdbc.artifactId>
-        <jdbc.version>11.2.0.3</jdbc.version>
+        <jdbc.version>11.2.0</jdbc.version>
         <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
         
         <!-- "clubpgn" database PRD 

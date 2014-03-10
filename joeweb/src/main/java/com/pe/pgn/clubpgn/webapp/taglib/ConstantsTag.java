@@ -56,7 +56,8 @@ public class ConstantsTag extends TagSupport {
      * @return int
      * @throws JspException if processing fails
      */
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public int doStartTag() throws JspException {
         // Using reflection, get the available field names in the class
         Class c = null;

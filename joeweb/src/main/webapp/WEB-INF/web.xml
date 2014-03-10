@@ -5,10 +5,11 @@
 	<display-name>joeweb</display-name>
 	<distributable />
 
-	<init-param>
+	
+	<!-- init-param>
 		<param-name>crossDomainSessionSecurity</param-name>
 		<param-value>false</param-value>
-	</init-param>
+	</init-param-->
 
 
 	<!-- precompiled jsp mappings -->

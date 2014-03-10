@@ -100,7 +100,7 @@ public class PasswordHintController {
         return new ModelAndView(new RedirectView(request.getContextPath()));
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void saveError(HttpServletRequest request, String error) {
         List errors = (List) request.getSession().getAttribute("errors");
         if (errors == null) {
@@ -111,7 +111,7 @@ public class PasswordHintController {
     }
 
     // this method is also in BaseForm Controller
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void saveMessage(HttpServletRequest request, String msg) {
         List messages = (List) request.getSession().getAttribute(BaseFormController.MESSAGES_KEY);
         if (messages == null) {

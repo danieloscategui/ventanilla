@@ -46,16 +46,19 @@ import java.util.Properties;
  */
 public class HibernateExtensionPostProcessor implements BeanFactoryPostProcessor {
     private String sessionFactoryBeanName = "sessionFactory";
-    private List mappingResources;
-    private List annotatedClasses;
-    private List configLocations;
+    @SuppressWarnings("rawtypes")
+	private List mappingResources;
+    @SuppressWarnings("rawtypes")
+	private List annotatedClasses;
+    @SuppressWarnings("rawtypes")
+	private List configLocations;
     private Properties hibernateProperties;
 
     /**
      * Adds the annotated classes and the mapping resources to the existing Session Factory configuration.
      * @param configurableListableBeanFactory the good ol' bean factory
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory)  {
         if (configurableListableBeanFactory.containsBean(sessionFactoryBeanName)) {
             BeanDefinition sessionFactoryBeanDefinition =
@@ -131,7 +134,8 @@ public class HibernateExtensionPostProcessor implements BeanFactoryPostProcessor
      *
      * @param mappingResources The list of mapping resources.
      */
-    public void setMappingResources(List mappingResources) {
+    @SuppressWarnings("rawtypes")
+	public void setMappingResources(List mappingResources) {
         this.mappingResources = mappingResources;
     }
 
@@ -140,7 +144,8 @@ public class HibernateExtensionPostProcessor implements BeanFactoryPostProcessor
      *
      * @param annotatedClasses The list of annotated classes that need to be added.
      */
-    public void setAnnotatedClasses(List annotatedClasses) {
+    @SuppressWarnings("rawtypes")
+	public void setAnnotatedClasses(List annotatedClasses) {
         this.annotatedClasses = annotatedClasses;
     }
 
@@ -149,7 +154,8 @@ public class HibernateExtensionPostProcessor implements BeanFactoryPostProcessor
      *
      * @param configLocations The list of configuration locations that need to be added.
      */
-    public void setConfigLocations(List configLocations) {
+    @SuppressWarnings("rawtypes")
+	public void setConfigLocations(List configLocations) {
         this.configLocations = configLocations;
     }
 

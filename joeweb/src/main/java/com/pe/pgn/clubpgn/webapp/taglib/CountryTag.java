@@ -82,7 +82,8 @@ public class CountryTag extends TagSupport {
      *
      * @see javax.servlet.jsp.tagext.Tag#doStartTag()
      */
-    public int doStartTag() throws JspException {
+    @SuppressWarnings("rawtypes")
+	public int doStartTag() throws JspException {
         ExpressionEvaluator eval = new ExpressionEvaluator(this, pageContext);
 
         if (selected != null) {
@@ -154,11 +155,13 @@ public class CountryTag extends TagSupport {
      *
      * @return List of LabelValues for all available countries.
      */
-    protected List buildCountryList(Locale locale) {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	protected List buildCountryList(Locale locale) {
         final String EMPTY = "";
         final Locale[] available = Locale.getAvailableLocales();
 
-        List countries = new ArrayList();
+      
+		List countries = new ArrayList();
 
         for (int i = 0; i < available.length; i++) {
             final String iso = available[i].getCountry();
@@ -182,8 +185,10 @@ public class CountryTag extends TagSupport {
      * Class to compare LabelValues using their labels with
      * locale-sensitive behaviour.
      */
-    public class LabelValueComparator implements Comparator {
-        private Comparator c;
+    @SuppressWarnings("rawtypes")
+	public class LabelValueComparator implements Comparator {
+        @SuppressWarnings("rawtypes")
+		private Comparator c;
 
         /**
          * Creates a new LabelValueComparator object.

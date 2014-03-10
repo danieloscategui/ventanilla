@@ -15,7 +15,7 @@ public interface RoleManager extends GenericManager<Role, Long> {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	List getRoles(Role role);
 
     /**

@@ -101,9 +101,10 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public List<T> getAllDistinct() {
-        Collection result = new LinkedHashSet(getAll());
+        
+		Collection result = new LinkedHashSet(getAll());
         return new ArrayList(result);
     }
 
@@ -165,22 +166,22 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * Utils methods for map results of queries to customized beans or java.Util.Map
      **/
     
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List findListOfBeans(String sql, Object[] filterKeys, Class beanClass) {	
         return (List) executeQuery(sql, filterKeys, new BeanListHandler(beanClass));
     }
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List findListOfMaps(String sql, Object[] filterKeys) {
 		return (List) executeQuery(sql, filterKeys, new MapListHandler());
 	}
 	  
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List findListOfArrays(String sql, Object[] filterKeys) {
 		return (List) executeQuery(sql, filterKeys, new ArrayListHandler());
 	}
 	
-	@SuppressWarnings({"unchecked", "finally", "deprecation" })
+	@SuppressWarnings({"unchecked", "finally", "deprecation", "rawtypes" })
 	public Object executeQuery(String sql, Object[] filterKeys, ResultSetHandler resultSetHandler) {
 		
 		filterKeys = filterKeys == null  ? new Object[]{} : filterKeys;

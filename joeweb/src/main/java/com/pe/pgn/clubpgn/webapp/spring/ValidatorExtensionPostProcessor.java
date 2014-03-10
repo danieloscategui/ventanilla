@@ -38,12 +38,14 @@ import java.util.List;
  */
 public class ValidatorExtensionPostProcessor implements BeanFactoryPostProcessor {
     private String validatorFactoryBeanName = "validatorFactory";
-    private List validationConfigLocations;
+    @SuppressWarnings("rawtypes")
+	private List validationConfigLocations;
 
     /**
      * Adds the validation configuration files to the list already held in the validator factory bean configuration.
      */
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
         if (configurableListableBeanFactory.containsBean(validatorFactoryBeanName)) {
             BeanDefinition validatorFactoryBeanDefinition = configurableListableBeanFactory.getBeanDefinition(validatorFactoryBeanName);
             MutablePropertyValues propertyValues = validatorFactoryBeanDefinition.getPropertyValues();
@@ -69,7 +71,8 @@ public class ValidatorExtensionPostProcessor implements BeanFactoryPostProcessor
      *
      * @param validationConfigLocations The list of additional validation configuration locations.
      */
-    public void setValidationConfigLocations(List validationConfigLocations) {
+    @SuppressWarnings("rawtypes")
+	public void setValidationConfigLocations(List validationConfigLocations) {
         this.validationConfigLocations = validationConfigLocations;
     }
 }
