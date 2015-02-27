@@ -824,6 +824,7 @@
         <cargo.container.url>http://dist.codehaus.org/jetty/jetty-6.1.21/jetty-6.1.21.zip</cargo.container.url>
         -->
 
+
         <!-- Database settings -->
         <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
         <hibernate.dialect>org.hibernate.dialect.Oracle9iDialect</hibernate.dialect>
@@ -848,7 +849,7 @@
         <jdbc.password>clubpgn123</jdbc.password> -->
         
         <!-- "clubpgn" database local --> 
-        <jdbc.url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc.url>
+        <jdbc.url>jdbc:oracle:thin:@localhost:1521:XE</jdbc.url>
         <jdbc.username>joeweb</jdbc.username>
         <jdbc.password>joeweb123</jdbc.password>        
         

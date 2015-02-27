@@ -26,6 +26,7 @@ import com.pe.pgn.clubpgn.webapp.util.ValidationUtil;
 
 public class MySecureResourceFilter implements FilterInvocationSecurityMetadataSource{
 
+	
    private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
    private UrlMatcher urlMatcher = new AntUrlPathMatcher();
    private static Collection<ConfigAttribute>  allCfgattrs = new HashSet<ConfigAttribute>();

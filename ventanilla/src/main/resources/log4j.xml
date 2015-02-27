@@ -6,7 +6,7 @@
 	<appender name="file"
 		class="org.apache.log4j.DailyRollingFileAppender">
 		<!-- param name="File" value="/opt/logs/clubpgnweb.log" /> -->
-		<param name="File" value="/Users/josediaz/Downloads/logs/joeweb.log" />
+		<param name="File" value="C:\\joe\\joeweb.log" />
 		<param name="datePattern" value="'_'dd-yyyy-MM'.log'" />
 		<param name="append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
