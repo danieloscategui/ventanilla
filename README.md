@@ -7,4 +7,4 @@
 
 Arquitectura con Spring
 
-* joeweb - Spring MVC, DWR, Hibernate. Trabaja con MySQL, Oracle, SQL Server.
+* joeweb - Spring MVC, DWR, Hibernate. Trabaja con MySQL, Oracle, PostgreSQ, SQL Server.
