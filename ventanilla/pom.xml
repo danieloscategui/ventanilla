@@ -825,33 +825,38 @@
         -->
 
 
-        <!-- Database settings -->
+        <!-- Database settings 
         <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
         <hibernate.dialect>org.hibernate.dialect.Oracle9iDialect</hibernate.dialect>
 		<jdbc.groupId>com.oracle</jdbc.groupId>
         <jdbc.artifactId>ojdbc6</jdbc.artifactId>
         <jdbc.version>11.2.0</jdbc.version>
-        <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
+        <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName-->
         
         <!-- "clubpgn" database PRD 
         <jdbc.url>jdbc:oracle:thin:@192.168.9.221:1521:ORCL</jdbc.url>
         <jdbc.username>clubpgn</jdbc.username>
         <jdbc.password>clubpgn456</jdbc.password>  -->
-                
-        <!-- "clubpgn" database clubpgn 
-		<jdbc.url>jdbc:oracle:thin:@192.168.1.52:1521:XE</jdbc.url>
-       	<jdbc.username>clubpgntestpp</jdbc.username>
-       	<jdbc.password>clubpgn123</jdbc.password>    -->    
-         
-        <!-- "clubpgn" database test
-        <jdbc.url>jdbc:oracle:thin:@192.168.9.69:1521:XE</jdbc.url>
-        <jdbc.username>clubpgn</jdbc.username>
-        <jdbc.password>clubpgn123</jdbc.password> -->
+               
         
-        <!-- "clubpgn" database local --> 
+        <!-- "clubpgn" database local 
         <jdbc.url>jdbc:oracle:thin:@localhost:1521:XE</jdbc.url>
         <jdbc.username>joeweb</jdbc.username>
-        <jdbc.password>joeweb123</jdbc.password>        
+        <jdbc.password>joeweb123</jdbc.password-->        
+        
+        
+         <!-- Database settings -->
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.mysql.MySQlDataTypeFactory</dbunit.dataTypeFactoryName>
+        <hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+		<jdbc.groupId>mysql</jdbc.groupId>
+        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+        <jdbc.version>5.1.38</jdbc.version>
+        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+        
+        <!-- "clubpgn" database local--> 
+        <jdbc.url>jdbc:mysql://localhost:3306/ventanilla</jdbc.url>
+        <jdbc.username>root</jdbc.username>
+        <jdbc.password>12345678</jdbc.password>        
         
        
         <!-- Properties calculated by application when running full-source plugin -->
